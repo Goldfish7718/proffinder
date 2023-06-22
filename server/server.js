@@ -36,3 +36,6 @@ app.listen(PORT, async () => {
     console.log(`Server started at port ${PORT}`);
 })
 
+app.get('/', (req, res) => {
+    res.send("ECHO Endpoint")
+})

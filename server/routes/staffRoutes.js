@@ -1,8 +1,8 @@
 import { Router } from "express";
 import { addStaff } from "../controllers/staffControllers.js";
 
-const app = Router()
+const router = Router()
 
-app.post('/addstaff', addStaff)
+router.post('/addstaff', addStaff)
 
-export default Router;
+export default router;

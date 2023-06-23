@@ -4,12 +4,12 @@ import mongoose from "mongoose";
 import cors from 'cors';
 import dotenv from 'dotenv';
 
+dotenv.config();
+
 // ROUTE IMPORTS
 import staffRoutes from './routes/staffRoutes.js'
 
-dotenv.config();
-
-//GENRAL CONSTANTS
+//GENERAL CONSTANTS
 const app = express();
 const PORT = process.env.PORT || 5000;
 const db_URI = process.env.db_URI;
@@ -34,8 +34,4 @@ const connectDB = async url => {
 app.listen(PORT, async () => {
     await connectDB(db_URI);
     console.log(`Server started at port ${PORT}`);
-})
-
-app.get('/', (req, res) => {
-    res.send("ECHO Endpoint")
 })

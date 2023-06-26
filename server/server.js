@@ -8,6 +8,7 @@ dotenv.config();
 
 // ROUTE IMPORTS
 import staffRoutes from './routes/staffRoutes.js'
+import profileRoutes from './routes/profileRoutes.js'
 
 //GENERAL CONSTANTS
 const app = express();
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ROUTES
 app.use('/staffs', staffRoutes);
+app.use('/auth', profileRoutes);
 
 //DB CONFIG
 const connectDB = async url => {

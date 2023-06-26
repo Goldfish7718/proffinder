@@ -2,7 +2,6 @@ import Staff from "../models/staffSchema.js";
 
 export const addStaff = async (req, res) => {
     try {
-        console.log('ECHO ADD STAFF');
         const { name } = req.body;
         const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
         const timeSlots = ['1030TO1120', '1120TO1215', '1215TO0105', '0105TO0200', '0200TO0255', '0305TO0400', '0400TO0455']

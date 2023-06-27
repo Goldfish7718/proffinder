@@ -2,13 +2,13 @@ import Staff from "../models/staffSchema.js";
 
 export const addStaff = async (req, res) => {
     try {
-        const { name } = req.body;
+        const { author } = req.body;
         const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-        const timeSlots = ['1030TO1120', '1120TO1215', '1215TO0105', '0105TO0200', '0200TO0255', '0305TO0400', '0400TO0455']
+        const timeSlots = ['10325TO1120', '1120TO1215', '1215TO0105', '0105TO0200', '0200TO0255', '0305TO0400', '0400TO0455']
 
         const newStaff = new Staff()
 
-        newStaff.name = name;
+        newStaff.author = author;
         
         for (let i = 0; i < days.length; i++) {
             newStaff.days.push({ dayName: days[i], timeSlots: [] })
@@ -18,7 +18,7 @@ export const addStaff = async (req, res) => {
             }
         }
 
-        newStaff.save()
+        await newStaff.save()
 
         res
             .status(200)

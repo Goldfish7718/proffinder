@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
 const staffSchema = new mongoose.Schema({
-    name: {
+    author: {
         required: true,
-        type: String
+        type: String,
+        ref: 'Profile'
     },
     days: [
         {
@@ -11,7 +12,10 @@ const staffSchema = new mongoose.Schema({
             timeSlots: [
                 {
                     timeSlotName: String,
-                    location: String
+                    location: {
+                        type: String,
+                        default: 'N/A'
+                    }
                 }
             ]
         }

@@ -1,9 +1,9 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const staffSchema = new mongoose.Schema({
     author: {
         required: true,
-        type: String,
+        type: Schema.Types.ObjectID,
         ref: 'Profile'
     },
     days: [

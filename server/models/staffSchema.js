@@ -15,6 +15,10 @@ const staffSchema = new mongoose.Schema({
                     location: {
                         type: String,
                         default: 'N/A'
+                    },
+                    status: {
+                        type: String,
+                        default: 'Regular'
                     }
                 }
             ]

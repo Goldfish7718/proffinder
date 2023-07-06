@@ -164,14 +164,15 @@ export const executeSearchQuery = async (req, res) => {
                 .status(400)
                 .json({ message: "No subdocument TIMESLOT found with the given ID" })
 
-        const { location } = timeSlot
+        const { location, status } = timeSlot
         const { fName, lName } = profile
 
         const result = {
             name: `Prof. ${fName} ${lName}`,
             dayName,
             timeSlotName,
-            location
+            location,
+            status
         }
 
         res
@@ -182,5 +183,46 @@ export const executeSearchQuery = async (req, res) => {
             .status(500)
             .json({ message: "Internal Server Error" })
         console.log(err);
+    }
+}
+
+export const addStatus = async (req, res) => {
+    try {
+        const { timetableID, dayID, timeSlotID } = req.params;
+        const { status } = req.body
+
+        const timetable = await Staff.findById(timetableID);
+
+        if (!timetable)
+            return res
+                .status(400)
+                .json({ message: "No timetable found with provided ID" })
+
+        const day = timetable.days.find(day => day._id == dayID)
+
+        if (!day)
+            return res
+                .status(400)
+                .json({ message: "No subdocument DAY found with the given ID" })
+
+        const timeSlot = day.timeSlots.find(timeSlot => timeSlot._id == timeSlotID)
+
+        if (!timeSlot)
+            return res
+                .status(400)
+                .json({ message: "No subdocument TIMESLOT found with the given ID" })
+
+        timeSlot.status = status;
+
+        await timetable.save()
+
+        res
+            .status(200)
+            .json({ timetable })
+        
+    } catch (err) {
+        res 
+            .status(500)
+            .json({ message: "Internal Server error" })
     }
 }

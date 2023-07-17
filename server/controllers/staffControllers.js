@@ -166,13 +166,15 @@ export const executeSearchQuery = async (req, res) => {
 
         const { location, status } = timeSlot
         const { fName, lName } = profile
+        const { absent } = day
 
         const result = {
             name: `Prof. ${fName} ${lName}`,
             dayName,
             timeSlotName,
             location,
-            status
+            status,
+            absent
         }
 
         res
@@ -212,7 +214,18 @@ export const addStatus = async (req, res) => {
                 .status(400)
                 .json({ message: "No subdocument TIMESLOT found with the given ID" })
 
-        timeSlot.status = status;
+        const currentDate = new Date();
+        const currentHour = currentDate.getHours();
+        const currentMinute = currentDate.getMinutes();
+
+        const resetHour = 0; // Reset hour (12 AM)
+        const resetMinute = 0; // Reset minute
+
+        if (currentHour === resetHour && currentMinute === resetMinute) {
+            timeSlot.status = 'regular';
+        } else {
+            timeSlot.status = status;
+        }
 
         await timetable.save()
 
@@ -224,5 +237,34 @@ export const addStatus = async (req, res) => {
         res 
             .status(500)
             .json({ message: "Internal Server error" })
+    }
+}
+
+export const markAbsent = async (req, res) => {
+    try {
+        const { staffID, dayID } = req.params;
+
+        const timetable = await Staff.findById(staffID);
+
+        if (!timetable)
+            return res
+                .status(400)
+                .json({ message: "No staff found with the given ID" });
+
+        const day = timetable.days.find(day => day._id == dayID);
+
+        if (!day)
+            return res
+                .status(400)
+                .json({ messgae: "No subdocumet DAY found with given ID" });
+
+        day.absent = !day.absent;
+        await timetable.save();
+
+        res
+            .status(200)
+            .json({ day })
+    } catch (err) {
+        console.log(err);
     }
 }

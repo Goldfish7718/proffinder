@@ -21,7 +21,11 @@ const staffSchema = new mongoose.Schema({
                         default: 'Regular'
                     }
                 }
-            ]
+            ],
+            absent: {
+                type: Boolean,
+                default: false
+            }
         }
     ]
 })

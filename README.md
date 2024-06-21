@@ -45,11 +45,12 @@ Proffinder is a platform I built as project for my engineering exploration subje
 
 > The timeslots in this project are as per my college's timetable. You may adjust it accordingly in the *controllers* folder
 
-## Contact 🔗
+# Contact 🔗
 
-- For any questions, please contact me on my email: [tejasnanoti2@gmail.com](mailto:tejasnanoti2@gmail.com)
-- [X/Twitter](https://twitter.com/tejas_jsx)
-- [LinkedIn](https://www.linkedin.com/in/tejas-nanoti-23965823b/)
+- For any queries, please contact me on my email: [tejasnanoti2@gmail.com](mailto:tejasnanoti2@gmail.com)
+- [![Twitter: tejas_jsx](https://img.shields.io/twitter/follow/tejas_jsx?style=social)](https://twitter.com/tejas_jsx)
+- [![Linkedin: tejasnanoti](https://img.shields.io/badge/-tejasnanoti-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tejas-nanoti-23965823b/)](https://www.linkedin.com/in/tejas-nanoti-23965823b/)
+- [![GitHub Goldfish7718](https://img.shields.io/github/followers/Goldfish7718?label=follow&style=social)](https://github.com/Goldfish7718)
 
 ## Licenses 📃
 
